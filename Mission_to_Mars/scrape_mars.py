@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
 #Import dependencies 
 from splinter import Browser
 from bs4 import BeautifulSoup
@@ -29,7 +28,6 @@ def scrape():
 	news_para = (soup_news.find('div', class_='article_teaser_body')).string
 
 
-
 	#JPL Mars Space Images - Featured Image
 	url2 = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
 	browser.visit(url2)
@@ -51,7 +49,6 @@ def scrape():
 
 	#Featured image url 
 	featured_image_url = baseurl + image_url
-
 
 
 	#Mars Weather twitter account
@@ -78,7 +75,6 @@ def scrape():
 	df = tables[0]
 	#DF to HTML
 	print(df.to_html())
-
 
 
 	#Mars Hemispheres 
@@ -127,12 +123,17 @@ def scrape():
      "News_Title": news_title,
      "Paragraph_Text": news_para,
      "Most_Recent_Mars_Image": featured_image_url,
+	 "Mars_Facts": tables,
      "Mars_Weather": mars_weather,
      "Mars_Hem": hemisphere_image_urls
      }
 
 
 	return mars_data
+
+if __name__ == "__main__":
+	print(scrape()) 
+	
 
 
 
